@@ -5,7 +5,7 @@ const {ServerErrorCodes,ClientErrorCodes} = require('../utils/status-code');
 const {userService} = require('../services/index');
 
 const AuthValidator = (req, res, next) => {
-    if(!req.body.email||!req.body.password||req.body.name) {
+    if(!req.body.email||!req.body.password||!req.body.name) {
         ErrorResponse.error = "Somethig went wrong";
         ErrorResponse.message = "missing required parameter";
         return res.status(400).json(ErrorResponse);

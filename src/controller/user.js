@@ -4,11 +4,13 @@ const asyncHandler = require('../utils/async-handler');
 
 const signup = asyncHandler(async (req, res) => {
     const requestData = {...req.body};
+    console.log(requestData);
     const responseRecord = await userService.signup({
             name: requestData.name,
             email: requestData.email,
             password: requestData.password,
         });
+    console.log(responseRecord);
     const response = SuccessResponse(responseRecord, "Successfully created a new account");
     return res.OK(response);
 });

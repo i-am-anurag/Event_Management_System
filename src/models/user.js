@@ -18,6 +18,12 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    invitedEventId: [{
+        eventCode: {
+            type: String,
+            ref:'Event'
+        }
+    }],
 }, {timestamps: true});
 
 userSchema.pre('save', function (next) {

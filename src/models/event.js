@@ -6,7 +6,7 @@ const EventSchema = new mongoose.Schema({
         required: true,
     },
     userId: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: mongoose.Types.ObjectId,
         ref: "User",
     },
     description: {
@@ -19,12 +19,17 @@ const EventSchema = new mongoose.Schema({
         required: true,
         maxlength:6,
     },
-    InviteStatus: {
-        type: String,
-        enum: ['Success','Pending','Rejected'],
-        default:'Pending',
-        required: true,
-    },
+    invitedUsers: [{
+        user: {
+            type: mongoose.Types.ObjectId,
+            ref: "User",
+        },
+        status: {
+            type: String,
+            enum: ['PENDING', 'ACCEPTED', 'REJECTED'],
+            default: 'PENDING',
+        }
+    }],
     image: {
         type: String,
     },

@@ -74,4 +74,5 @@ module.exports = {
     getUserById,
     resetPassword,
     changePassword,
+    getUserByEmail,
 }
