@@ -10,25 +10,22 @@ const signup = asyncHandler(async (req, res) => {
             email: requestData.email,
             password: requestData.password,
         });
-    console.log(responseRecord);
-    const response = SuccessResponse(responseRecord, "Successfully created a new account");
-    return res.OK(response);
+   
+    return res.OK(responseRecord);
 });
 
 const login = asyncHandler(async (req, res) => {
     const {email,password} = req.body;
     const token = await userService.signin({email,password});
-    const response = SuccessResponse(token, "User LoggedIn sucessfully");
-
-    return res.OK(response);
+    
+    return res.OK(token);
 });
 
 const resetPassword = asyncHandler(async(req, res) => {
     const requestData = {...req.body};
     const responseData = await userService.resetPassword(requestData.email);
-    const response = SuccessResponse(responseData, "User Request sent sucessfully");
 
-    return res.OK(response);
+    return res.OK(responseData);
 });
 
 const changePassword = async(req, res) => {

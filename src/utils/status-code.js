@@ -1,20 +1,10 @@
-const ClientErrorCodes = Object.freeze({
+const ErrorCodes = Object.freeze({
     BAD_REQUESET: 400,
     NOT_FOUND: 404,
-});
-
-
-const ServerErrorCodes = Object.freeze({
+    UNAUTHORIZED: 401,
     INTERNAL_SERVER_ERROR: 500,
-});
-
-const SuccessCodes = Object.freeze({
     OK: 200,
-    CREATED:201,
+    CREATED: 201,
 });
 
-module.exports = {
-    ClientErrorCodes,
-    ServerErrorCodes,
-    SuccessCodes,
-}
+module.exports = ErrorCodes;

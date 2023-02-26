@@ -5,7 +5,8 @@ const router = express.Router();
 
 router.post('/create',checkValidUser,eventControllers.createEvent);
 router.get('/',checkValidUser,eventControllers.getAllEvents);
-router.patch('/accept',checkValidUser,eventControllers.updateEventStatus);
+router.patch('/eventresponse',checkValidUser,eventControllers.updateEventStatus);
+// router.get('')
 
 
 module.exports = router;

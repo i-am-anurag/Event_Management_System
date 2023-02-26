@@ -1,8 +1,8 @@
 const User = require('../models/user');
 const Otp = require('../models/otp');
 const {sendEmail} = require('../services/sendmail');
-const ErrorResponse = require('../utils/error');
-const {ClientErrorCodes} = require('../utils/status-code');
+const ErrorResponse = require("../utils/error");
+const ErrorCodes = require('../utils/status-code');
 
 const getUserByEmail = async(email)=>{
     const user = await User.findOne({email});
@@ -30,7 +30,7 @@ const signin = async(data)=>{
     }
     if(!userRecord.comparePassword(data.password)) {
         throw new ErrorResponse('Incorrect Password',
-        ClientErrorCodes.BAD_REQUESET);
+        ErrorCodes.BAD_REQUESET);
     }
     const token = userRecord.genJWT();
 

@@ -20,8 +20,7 @@ const createEvent = async(data)=>{
 }
 
 const getAll = async(userId) => {
-    const eventRecord = await Event.find(userId);
-
+    const eventRecord = await Event.find(userId).populate('invitedUsers.user');
     return eventRecord;
 }
 
@@ -45,6 +44,30 @@ const updateEventStatus = async(data) => {
     })
 
 }
+// const sendMailUser = async (email,eventCode) => {
+//     const userRecord = await userService.getUserByEmail(email);
+//     const userId = userRecord._id;
+//     if(!userRecord) {
+//         throw new ErrorResponse('User Not Found',
+//         ClientErrorCodes.NOT_FOUND);
+//     }
+
+//     const eventRecord = await Event.findOne({eventCode: eventCode});
+//     return true;
+// }
+
+const deleteEvent = async(eventId,userId)=>{
+    const response = await Event.delete(eventId,userId);
+}
+
+//how many types to get an event means by name , by ID OR all event
+// const updateEvent = async(eventId,userId)=>{
+    //If I will update an event, then the updated event will be send via email to user?
+    //Can the event creator update the event after the reminder has been sent?
+    //how the max user work on the concurenncy 
+
+// }
+
 module.exports = {
     createEvent,
     getAll,
