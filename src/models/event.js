@@ -28,6 +28,10 @@ const EventSchema = new mongoose.Schema({
             type: String,
             enum: ['PENDING', 'ACCEPTED', 'REJECTED'],
             default: 'PENDING',
+        },
+        respondTime: {
+            type:Date,
+            default:null,
         }
     }],
     image: {
@@ -47,6 +51,7 @@ const EventSchema = new mongoose.Schema({
     }
 
 }, {timestamps: true});
+
 
 const Event = mongoose.model('Event',EventSchema,'Event');
 

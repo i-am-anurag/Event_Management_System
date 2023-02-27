@@ -7,7 +7,6 @@ const userSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
-        unique: true,
     },
     email: {
         type: String,
@@ -19,9 +18,11 @@ const userSchema = new mongoose.Schema({
         required: true,
     },
     invitedEventId: [{
-        eventCode: {
-            type: String,
-            ref:'Event'
+        userId:{
+            type:mongoose.Types.ObjectId,
+            eventCode: {
+                type: String,
+            }
         }
     }],
 }, {timestamps: true});

@@ -26,7 +26,7 @@ const signin = async(data)=>{
     const userRecord = await getUserByEmail(data.email);
     if(!userRecord) {
         throw new ErrorResponse('User Not Found',
-            ClientErrorCodes.NOT_FOUND);
+        ErrorCodes.NOT_FOUND);
     }
     if(!userRecord.comparePassword(data.password)) {
         throw new ErrorResponse('Incorrect Password',
@@ -42,7 +42,7 @@ const resetPassword = async (email) => {
     const userId = userRecord._id;
     if(!userRecord) {
         throw new ErrorResponse('User Not Found',
-        ClientErrorCodes.NOT_FOUND);
+        ErrorCodes.NOT_FOUND);
     }
     const OTP = Math.floor(100000 + Math.random() * 900000);
     const otp = new Otp({ userId, OTP });
@@ -59,7 +59,7 @@ const changePassword = async(otp,userId,newPassword) => {
     const otpRecord = await Otp.findOne({userId: userId });
     if(otpRecord.OTP!==otp)
         throw new ErrorResponse('OTP not match',
-            ClientErrorCodes.BAD_REQUESET);
+            ErrorCodes.BAD_REQUESET);
             
     const userRecord = await User.findByIdAndUpdate(userId, { password: newPassword }, { new: true,runValidators: true });
     userRecord.save();

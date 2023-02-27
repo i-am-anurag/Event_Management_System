@@ -30,8 +30,7 @@ const resetPassword = asyncHandler(async(req, res) => {
 
 const changePassword = async(req, res) => {
     const requestData = {...req.body };
-    const responseData = await userService.changePassword(requestData.OTP, requestData.userId, requestData.password);   
-    const response = SuccessResponse(responseData, "Password updated sucessfully");
+    const response = await userService.changePassword(requestData.OTP, requestData.userId, requestData.password);   
 
     return res.OK(response);
 }

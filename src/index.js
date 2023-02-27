@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const {connect,PORT} = require('./config/serverConfig');
 const errorhandler = require('./middleware/errorhandler');
 const response = require('./middleware/response');
+require('./services/cronejob');
 
 const appRoutes = require('./routes/index');
 
